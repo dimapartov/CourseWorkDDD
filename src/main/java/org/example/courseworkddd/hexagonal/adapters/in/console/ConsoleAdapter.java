@@ -1,11 +1,10 @@
 package org.example.courseworkddd.hexagonal.adapters.in.console;
 
-
 import org.example.courseworkddd.hexagonal.adapters.out.notification.ConsoleNotificationService;
 import org.example.courseworkddd.hexagonal.adapters.out.persistence.InMemorySupplyOrderRepository;
-import org.example.courseworkddd.hexagonal.domain.service.SupplierOrderServiceImpl;
 import org.example.courseworkddd.hexagonal.domain.model.SupplyOrder;
 import org.example.courseworkddd.hexagonal.domain.ports.primary.SupplierOrderUseCase;
+import org.example.courseworkddd.hexagonal.domain.service.SupplierOrderServiceImpl;
 
 import java.util.Scanner;
 
