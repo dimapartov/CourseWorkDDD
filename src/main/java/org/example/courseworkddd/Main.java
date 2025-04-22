@@ -10,14 +10,11 @@ public class Main {
 
     public static void main(String[] args) {
 //        Слоистая
-
 /*        InMemoryInventoryRepository inventoryRepository = new InMemoryInventoryRepository();
         InventoryService inventoryService = new InventoryService(inventoryRepository);
         ConsoleUI consoleUI = new ConsoleUI(inventoryService);
         consoleUI.start();*/
-
 //        Гексагональная
-
         ConsoleAdapter adapter = new ConsoleAdapter();
         adapter.start();
     }

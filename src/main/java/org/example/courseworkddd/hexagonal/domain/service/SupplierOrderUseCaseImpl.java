@@ -1,6 +1,5 @@
 package org.example.courseworkddd.hexagonal.domain.service;
 
-
 import org.example.courseworkddd.hexagonal.domain.model.OrderStatus;
 import org.example.courseworkddd.hexagonal.domain.model.SupplyOrder;
 import org.example.courseworkddd.hexagonal.domain.ports.primary.SupplierOrderUseCase;

@@ -2,8 +2,8 @@ package org.example.courseworkddd.hexagonal.domain.ports.secondary;
 
 import org.example.courseworkddd.hexagonal.domain.model.SupplyOrder;
 
-import java.util.Optional;
 import java.util.List;
+import java.util.Optional;
 
 
 public interface SupplyOrderRepository {

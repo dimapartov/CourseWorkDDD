@@ -1,6 +1,5 @@
 package org.example.courseworkddd.hexagonal.domain.model;
 
-
 public enum OrderStatus {
     CREATED("Создан"),
     SENT("Отправлен"),
