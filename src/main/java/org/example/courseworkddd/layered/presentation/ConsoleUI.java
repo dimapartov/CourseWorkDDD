@@ -11,11 +11,11 @@ import java.util.Scanner;
 
 public class ConsoleUI {
 
-    private InventoryService service;
+    private InventoryService inventoryService;
     private Scanner scanner;
 
-    public ConsoleUI(InventoryService service) {
-        this.service = service;
+    public ConsoleUI(InventoryService inventoryService) {
+        this.inventoryService = inventoryService;
         scanner = new Scanner(System.in);
     }
 
@@ -76,7 +76,7 @@ public class ConsoleUI {
         System.out.println("Введите критический уровень:");
         int criticalLevel = Integer.parseInt(scanner.nextLine());
         Product product = new Product(id, name, quantity, expiryDate, minStock, optimalStock, criticalLevel);
-        service.addProduct(product);
+        inventoryService.addProduct(product);
         System.out.println("Продукт добавлен");
     }
 
@@ -85,7 +85,7 @@ public class ConsoleUI {
         String id = scanner.nextLine();
         System.out.println("Введите количество для списания:");
         int quantity = Integer.parseInt(scanner.nextLine());
-        boolean result = service.useProduct(id, quantity);
+        boolean result = inventoryService.useProduct(id, quantity);
         if (result) {
             System.out.println("Продукт списан");
         } else {
@@ -94,7 +94,7 @@ public class ConsoleUI {
     }
 
     private void writeOffExpired() {
-        service.writeOffExpiredProducts();
+        inventoryService.writeOffExpiredProducts();
         System.out.println("Просроченные продукты списаны");
     }
 
@@ -103,7 +103,7 @@ public class ConsoleUI {
         String id = scanner.nextLine();
         System.out.println("Введите новое количество:");
         int newQuantity = Integer.parseInt(scanner.nextLine());
-        boolean result = service.adjustInventory(id, newQuantity);
+        boolean result = inventoryService.adjustInventory(id, newQuantity);
         if (result) {
             System.out.println("Запасы скорректированы");
         } else {
@@ -112,7 +112,7 @@ public class ConsoleUI {
     }
 
     private void generateReport() {
-        List<Product> products = service.generateReport();
+        List<Product> products = inventoryService.generateReport();
         if (products.isEmpty()) {
             System.out.println("Инвентаризация пуста");
         } else {
@@ -122,7 +122,7 @@ public class ConsoleUI {
     }
 
     private void showCriticalProducts() {
-        List<Product> products = service.getCriticalProducts();
+        List<Product> products = inventoryService.getCriticalProducts();
         if (products.isEmpty()) {
             System.out.println("Нет продуктов с критическим уровнем запасов");
         } else {

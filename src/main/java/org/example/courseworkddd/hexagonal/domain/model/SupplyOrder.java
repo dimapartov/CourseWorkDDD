@@ -38,22 +38,10 @@ public class SupplyOrder {
         this.status = status;
     }
 
-    private String getRussianStatus() {
-        return switch (status) {
-            case CREATED -> "создан";
-            case SENT -> "отправлен";
-            case CONFIRMED -> "подтверждён";
-            case RECEIVED -> "принята";
-            case QUALITY_CHECKED -> "качество проверено";
-            case RETURNED -> "возврат";
-            default -> "";
-        };
-    }
-
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        return "Заказ поставщику {идентификатор='" + id + "', информация о прогнозе='" + forecastInfo + "', статус=" + getRussianStatus() + ", дата создания=" + createdDate.format(formatter) + "}";
+        return "Заказ поставщику {идентификатор='" + id + "', информация о прогнозе='" + forecastInfo + "', статус=" + status + ", дата создания=" + createdDate.format(formatter) + "}";
     }
 
 }

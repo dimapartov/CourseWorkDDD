@@ -4,7 +4,7 @@ import org.example.courseworkddd.hexagonal.adapters.out.notification.ConsoleNoti
 import org.example.courseworkddd.hexagonal.adapters.out.persistence.InMemorySupplyOrderRepository;
 import org.example.courseworkddd.hexagonal.domain.model.SupplyOrder;
 import org.example.courseworkddd.hexagonal.domain.ports.primary.SupplierOrderUseCase;
-import org.example.courseworkddd.hexagonal.domain.service.SupplierOrderServiceImpl;
+import org.example.courseworkddd.hexagonal.domain.service.SupplierOrderUseCaseImpl;
 
 import java.util.Scanner;
 
@@ -15,7 +15,7 @@ public class ConsoleAdapter {
     private Scanner scanner;
 
     public ConsoleAdapter() {
-        service = new SupplierOrderServiceImpl(new InMemorySupplyOrderRepository(), new ConsoleNotificationService());
+        service = new SupplierOrderUseCaseImpl(new InMemorySupplyOrderRepository(), new ConsoleNotificationService());
         scanner = new Scanner(System.in);
     }
 
@@ -95,19 +95,22 @@ public class ConsoleAdapter {
     private void receiveDelivery() {
         System.out.println("Введите идентификатор заказа:");
         String id = scanner.nextLine();
-        service.receiveDelivery(id);
-        System.out.println("Поставка принята и качество проверено");
+        System.out.println("Оцените качество заказа от 0 до 5:");
+        int quality = Integer.parseInt(scanner.nextLine());
+        if (quality >= 3 & quality <= 5) {
+            service.receiveDelivery(id);
+            System.out.println("Качество соответствует ожидаемому, заказ принят");
+        } else {
+            service.processReturn(id);
+            System.out.println("Качество не удовлетворительно, оформлен возврат заказа");
+        }
     }
 
     private void processReturn() {
         System.out.println("Введите идентификатор заказа:");
         String id = scanner.nextLine();
         service.processReturn(id);
-        System.out.println("Возврат обработан");
-    }
-
-    public static void main(String[] args) {
-        new ConsoleAdapter().start();
+        System.out.println("Возврат выполнен");
     }
 
 }

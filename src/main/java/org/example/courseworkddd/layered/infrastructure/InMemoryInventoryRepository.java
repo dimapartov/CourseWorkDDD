@@ -12,10 +12,12 @@ public class InMemoryInventoryRepository implements InventoryRepository {
 
     private List<Product> products = new ArrayList<>();
 
+    @Override
     public void save(Product product) {
         products.add(product);
     }
 
+    @Override
     public void update(Product product) {
         for (int i = 0; i < products.size(); i++) {
             if (products.get(i).getId().equals(product.getId())) {
@@ -25,14 +27,17 @@ public class InMemoryInventoryRepository implements InventoryRepository {
         }
     }
 
+    @Override
     public void delete(Product product) {
         products.removeIf(p -> p.getId().equals(product.getId()));
     }
 
+    @Override
     public List<Product> findAll() {
         return new ArrayList<>(products);
     }
 
+    @Override
     public Optional<Product> findById(String id) {
         return products.stream().filter(p -> p.getId().equals(id)).findFirst();
     }
